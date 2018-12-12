@@ -1,6 +1,4 @@
-package relANDrecord;
-
-import Schema.RelDefSchema;
+package Schema;
 
 public class RelDef {
 	private static RelDefSchema relDef;

@@ -18,7 +18,8 @@ public class app {
 		System.out.println("(\\_/)");
 		System.out.println("( •,•)");
 		System.out.println("(\")_(\")");
-		
+
+		System.out.println(" tapez help pour voir la listCommande possible ! \n");
 		
 		
 		

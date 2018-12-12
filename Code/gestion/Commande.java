@@ -10,7 +10,6 @@ import Schema.RelDefSchema;
 public class Commande {
 	
 	public static String listCommande(String c) {		
-		System.out.println(" tapez help pour voir la listCommande possible ! \n");
 		String action;
 		
 		StringTokenizer st = new StringTokenizer(c," ");

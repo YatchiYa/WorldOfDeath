@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Schema.DBDef;
+import Schema.RelDef;
 import Schema.RelDefSchema;
 import gestion.Commande;
-import relANDrecord.RelDef;
 
 
 public class DBManager {

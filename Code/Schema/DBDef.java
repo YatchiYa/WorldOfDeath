@@ -2,8 +2,6 @@ package Schema;
 
 import java.util.ArrayList;
 
-import relANDrecord.RelDef;
-
 
 public class DBDef {
 		// faire le singleton !!!!
