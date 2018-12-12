@@ -1,13 +1,16 @@
 package application;
 
+import java.io.IOException;
 import java.util.Scanner;
 import constants.Constants;
 
 import ManagerFolder.DBManager;
+import ManagerFolder.DiskManager;
+import Schema.PageId;
 
 public class app {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		
 		System.out.println("Feel welcome to mini_SGBD");
@@ -21,6 +24,7 @@ public class app {
 		
 		DBManager dbManager = new DBManager();
 		dbManager.init();
+		
 		
 		
 		Scanner sc = new Scanner(System.in);

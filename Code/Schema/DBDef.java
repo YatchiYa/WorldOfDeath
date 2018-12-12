@@ -1,4 +1,4 @@
-package ManagerFolder;
+package Schema;
 
 import java.util.ArrayList;
 

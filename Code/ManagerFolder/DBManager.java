@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Schema.DBDef;
 import Schema.RelDefSchema;
 import gestion.Commande;
 import relANDrecord.RelDef;
@@ -25,7 +26,7 @@ public class DBManager {
 
 	public static void finish() throws FileNotFoundException, IOException {
 		db.finish();
-		
+		BufferManager.flushAll();		
 	}
 	
 
