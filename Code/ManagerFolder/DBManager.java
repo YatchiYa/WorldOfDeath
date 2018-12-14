@@ -38,8 +38,25 @@ public class DBManager {
 	public static void CreateRelation(String NomRel, int nbC, ArrayList<String> typeC) {
 		RelDefSchema new_Rel = new RelDefSchema(NomRel, nbC);
 		new_Rel.setType_col(typeC);
+		
+		int recordSize =0;
+
+		for(String s :typeC) {
+			switch (s.toLowerCase()) {
+			case "int" :case"float" :recordSize+=4;
+			break;		
+			default :recordSize+= 2*Integer.parseInt(s.substring(6)); 
+			}
+		}
+		int slotCount= constants.Constants.pageSize/(recordSize+1);
+		
 		// creation de la relation avec la nouvelle rel
 		RelDef relDef =new RelDef(new_Rel,db.getCptRel());
+		
+		//A VERIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		relDef.setRecordSize(recordSize);
+		relDef.setSlotCount(slotCount);
+		relDef.setFileIdx(db.getCptRel());
 		// ajouter a la base relation
 		db.AddRelation(relDef);
 		// incrementer le countRel  de la DBDef
