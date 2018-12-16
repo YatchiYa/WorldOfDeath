@@ -98,6 +98,30 @@ public class HeaderPageInfo {
 		}	
 	}
 	
+	public void addIdxPage(Integer i) {
+		pageIdx.add(i);
+	}
+	public void addNbSlotDispo(Integer i) {
+		freeSlot.add(i);
+	}
 	
+	public boolean decrementNbSlotDispo(Integer id) {
+		boolean find = false;
+		
+		int indice = pageIdx.indexOf(id);
+		
+		if(indice!=-1) {
+			int nb = freeSlot.get(indice).intValue();
+			nb--;
+			Integer newNb = new Integer(nb);
+			freeSlot.set(indice, newNb);
+			find = true;
+		}
+		
+		return find;
+	}
+	public void incrementNbPage() {
+		dataPageCount++;
+	}
 }
 

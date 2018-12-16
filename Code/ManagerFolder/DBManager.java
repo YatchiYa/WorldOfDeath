@@ -17,7 +17,7 @@ public class DBManager {
 	private static DBDef db;
 	static Commande cmd= new Commande();
 	
-	public static void init() {
+	public static void init() throws FileNotFoundException, ClassNotFoundException, IOException {
 		// the init function
 		db = new DBDef();
 		db.init();
@@ -63,6 +63,25 @@ public class DBManager {
 		db.incrCompteur();		
 		
 		System.out.println(" relation ajouté avec succée !!");
+		
+		
+		try {
+			DiskManager.CreateFile(relDef.getFileIdx());
+		}catch(IOException e) {
+			System.out.println("*** Une ereur s'est produite lors de la création du fichier ! ***");
+			System.out.println("Détails : " + e.getMessage());
+		}
+		
+		//creation d'un heapfile (pointant vers la RelDef nouvellement créée) et rajout de ce heapfile
+		//dans la liste des heapfiles
+		HeapFile hf = new HeapFile(relDef);
+		//appel de create header sur le heapfile nouvellement créé
+		try {
+			DiskManager.AddPage(relDef.getFileIdx());
+		}catch(IOException e) {
+			System.out.println("*** Une ereur s'est produite lors de la création de la header page ! ***");
+			System.out.println("Détails : " + e.getMessage());
+		}
 		
 	}
 	

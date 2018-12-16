@@ -28,7 +28,7 @@ public class BufferManager {
 			 */
 			
 			if(iPageId.equals(bufferPool[j].getframe().getPage())) {
-				bufferPool[j].getframe().incr_PinCount();
+				bufferPool[j].getframe().incrementPinCount();
 				return bufferPool[j].getBuffer();
 			}
 			// la frame est vide donc  
@@ -38,7 +38,7 @@ public class BufferManager {
 				// dabord faire le diskManager
 				DiskManager.ReadPage(iPageId, new_buffer);
 				bufferPool[j].setBuffer(new_buffer); //o n initialisele buffer
-				bufferPool[j].getframe().incr_PinCount(); // on incr le pincount
+				bufferPool[j].getframe().incrementPinCount(); // on incr le pincount
 				bufferPool[j].getframe().setPage(iPageId); // on initialise avec la page ID
 				return new_buffer;
 			}
@@ -62,8 +62,8 @@ public class BufferManager {
 					for(int i = 1; i<CountFrame_zero.size(); i++) {
 						
 						// il verifie la trame, son pinCountTime a l instant t
-						Date currentTime = CountFrame_zero.get(i).getframe().getInitialTimeFrame();
-						Date newLRUTime = nouvelleFrame.getframe().getInitialTimeFrame();
+						Date currentTime = CountFrame_zero.get(i).getframe().getTimePinCountAtZero();
+						Date newLRUTime = nouvelleFrame.getframe().getTimePinCountAtZero();
 						if(currentTime.before(newLRUTime)) {
 							nouvelleFrame = CountFrame_zero.get(i);
 						}
@@ -79,7 +79,7 @@ public class BufferManager {
 					 */
 					nouvelleFrame.getframe().setPage(iPageId);
 					// pinCount++
-					nouvelleFrame.getframe().incr_PinCount();
+					nouvelleFrame.getframe().incrementPinCount();
 					
 					// on cree un buffer et on l'ajoute au disk manager
 					byte[] field = new byte[(int)Constants.pageSize];
@@ -109,9 +109,9 @@ public class BufferManager {
 			
 			if(iPageId.equals(bufferPool[i].getframe().getPage())) {
 				
-				bufferPool[i].getframe().decr_pinCount();
+				bufferPool[i].getframe().decrementPinCount();
 				if(bufferPool[i].getframe().getPinCount() == 0) {
-					bufferPool[i].getframe().rezTime();
+					bufferPool[i].getframe().setTimePinCountAtZero(new Date());
 				}
 				if(iIsDirty == 1) {
 					bufferPool[i].getframe().setDirtyFlag(iIsDirty);

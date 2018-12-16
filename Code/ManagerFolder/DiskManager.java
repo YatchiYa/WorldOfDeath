@@ -35,7 +35,7 @@ public class DiskManager {
 	 * @return
 	 * @throws IOException
 	 */
-	public static int AddPage(int iFileIdx, int oPageId) throws IOException{
+	public static PageId AddPage(int iFileIdx) throws IOException{
 		// ouverture du fichier
 		try {
 			RandomAccessFile randomfile = new RandomAccessFile(Constants.PATH+iFileIdx+".rf","rw");
@@ -53,11 +53,11 @@ public class DiskManager {
 			// System.out.println(" \n commentaire : "+ iFileIdx + " " + indice);
 			PageId new_page =  new PageId(iFileIdx,indice);
 			// retourn l'id de la nouvelle page !!!
-			oPageId = new_page.getFileIdx();
-			return oPageId;
+			// oPageId = new_page.getFileIdx();
+			return new_page;
 		}catch(Exception e) {
 			e.printStackTrace();
-			return 0;
+			return null;
 		}
 	}
 	

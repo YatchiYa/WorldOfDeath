@@ -3,6 +3,7 @@ package Schema;
 import java.util.Arrays;
 import constants.Constants;
 
+
 public class BufferTable {
 	private Frame frame;
 	private byte[] buffer;

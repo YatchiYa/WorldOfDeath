@@ -13,7 +13,7 @@ public class HeapFile {
 		DiskManager.CreateFile(relation.getFileIdx());	
 
 		// ajouter de la page
-		DiskManager.AddPage(relation.getFileIdx(),0);    // revenir revoir plus tard 
+		DiskManager.AddPage(relation.getFileIdx());    // revenir revoir plus tard 
 		
 		//recuperer le buffer de la Header Page vis le BufferManger
 		// new pageId
